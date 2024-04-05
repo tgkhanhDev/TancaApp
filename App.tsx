@@ -5,47 +5,28 @@
  * @format
  */
 
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {StyleSheet, useColorScheme} from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import SignUpRoutes from './router/signUpRoutes/SignUpRoutes';
 
-
-
-import {SignUp_Phone, SignUpPage} from './page';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   return (
-    <ScrollView contentContainerStyle={{flex:1}}>
-      {/* <SignUpPage /> */}
-      <SignUp_Phone />
-      {/* <NoAccountTag /> */}
-    </ScrollView>
+    <NavigationContainer>
+      <SignUpRoutes/>
+    </NavigationContainer>
   );
 }
 

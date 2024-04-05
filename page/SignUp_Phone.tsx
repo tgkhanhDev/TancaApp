@@ -9,12 +9,18 @@ import {
 } from 'react-native';
 import React from 'react';
 import {NoAccountTag, SocialMediaLogin} from '../components';
+import { SignUpStackParamList } from '../router/signUpRoutes/SignUpRoutes';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-export const SignUp_Phone = () => {
+
+type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
+
+export const SignUp_Phone = ({navigation}: SignUpPage_Props) => {
   return (
-    <View style={{flex:1}}>
+    <ScrollView contentContainerStyle={{flex: 1}}>
       <View style={styles.container}>
         <View style={styles.inputContainer}>
+          
           <TouchableOpacity style={styles.phoneRegion}>
             <Text>+61</Text>
             <Image
@@ -40,7 +46,7 @@ export const SignUp_Phone = () => {
         <SocialMediaLogin />
       </View>
       <NoAccountTag />
-    </View>
+    </ScrollView>
   );
 };
 

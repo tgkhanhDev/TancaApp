@@ -4,7 +4,9 @@ import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 export const SocialMediaLogin = () => {
   return (
     <View style={styles.socialBtnContainer}>
-      <TouchableOpacity style={styles.socialBtn}>
+      <TouchableOpacity style={styles.socialBtn}
+      
+      >
         <Image source={require('../../images/signUpPage/post.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.socialBtn}>

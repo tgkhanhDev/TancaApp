@@ -1,30 +1,45 @@
-import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
-import { SocialMediaLogin } from '../components';
+import {SocialMediaLogin} from '../components';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { SignUpStackParamList } from '../router/signUpRoutes/SignUpRoutes';
 
-export const SignUpPage = () => {
+type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
+
+export const SignUpPage = ({navigation}: SignUpPage_Props) => {
   return (
-    <View style={styles.container}>
-      <Image source={require('../images/signUpPage/main.png')} />
-      <Text style={styles.centerText}>
-        Creating an account will allow you to use Tanca on your phone and on the
-        web
-      </Text>
+    <ScrollView contentContainerStyle={{flex: 1}}>
+      <View style={styles.container}>
+        <Image source={require('../images/signUpPage/main.png')} />
+        <Text style={styles.centerText}>
+          Creating an account will allow you to use Tanca on your phone and on
+          the web
+        </Text>
 
-      <TouchableOpacity style={styles.button}>
-        <Image source={require('../images/signUpPage/phone.png')} />
-        <Text style={styles.buttonText}>Sign up with Phone</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.button}
+        onPress={()=>navigation.navigate('Sign up Tanca')}
+        >
+          <Image source={require('../images/signUpPage/phone.png')} />
+          <Text style={styles.buttonText}>Sign up with Phone</Text>
+        </TouchableOpacity>
 
-      <View style={styles.horizontalContainer}>
-        <Text style={styles.horizontal}></Text>
-        <Text style={styles.centerText}>or, sign up with</Text>
-        <Text style={styles.horizontal}></Text>
+        <View style={styles.horizontalContainer}>
+          <Text style={styles.horizontal}></Text>
+          <Text style={styles.centerText}>or, sign up with</Text>
+          <Text style={styles.horizontal}></Text>
+        </View>
+
+        {/* Login with socialmedia  */}
+        <SocialMediaLogin />
       </View>
-      
-      {/* Login with socialmedia  */}
-      <SocialMediaLogin />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -40,8 +55,8 @@ const styles = StyleSheet.create({
     color: '#8793B4',
     justifyContent: 'center',
     alignItems: 'center',
-    textAlign:'center',
-    fontSize: 17.5
+    textAlign: 'center',
+    fontSize: 17.5,
   },
   button: {
     backgroundColor: '#1ECC78',
@@ -72,6 +87,4 @@ const styles = StyleSheet.create({
     borderWidth: 0.25,
     borderColor: '#8793B4',
   },
-
-  
 });
