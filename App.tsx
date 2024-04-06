@@ -13,6 +13,7 @@ import {StyleSheet, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import SignUpRoutes from './router/signUpRoutes/SignUpRoutes';
+import SignUp_Gmail from './page/SignUp_Gmail';
 
 
 function App(): React.JSX.Element {

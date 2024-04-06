@@ -7,9 +7,11 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {SocialMediaLogin} from '../components';
+import {SocialMediaLogin_Phone} from '../components';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SignUpStackParamList } from '../router/signUpRoutes/SignUpRoutes';
+import SignUpHorrizon from '../components/templates/SignUpHorrizon';
+import { SignUpPhoneTabParamList } from '../router/signUpRoutes/tabs';
 
 type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
 
@@ -23,21 +25,34 @@ export const SignUpPage = ({navigation}: SignUpPage_Props) => {
           the web
         </Text>
 
-        <TouchableOpacity style={styles.button}
-        onPress={()=>navigation.navigate('Sign up Tanca')}
-        >
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Sign up Tanca')}>
           <Image source={require('../images/signUpPage/phone.png')} />
           <Text style={styles.buttonText}>Sign up with Phone</Text>
         </TouchableOpacity>
 
-        <View style={styles.horizontalContainer}>
-          <Text style={styles.horizontal}></Text>
-          <Text style={styles.centerText}>or, sign up with</Text>
-          <Text style={styles.horizontal}></Text>
-        </View>
+        <SignUpHorrizon title="or, sign up with" />
 
         {/* Login with socialmedia  */}
-        <SocialMediaLogin />
+        {/* <SocialMediaLogin_Phone /> */}
+        <View style={styles.socialBtnContainer}>
+          <TouchableOpacity
+            style={styles.socialBtn}
+            onPress={() => navigation.navigate('Sign up Phone')}>
+            <Image source={require('../images/signUpPage/post.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialBtn}>
+            <Image source={require('../images/signUpPage/Facebook.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialBtn}>
+            <Image source={require('../images/signUpPage/Google.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialBtn}>
+            <Image source={require('../images/signUpPage/Id-apple.png')} />
+          </TouchableOpacity>
+        </View>
+
       </View>
     </ScrollView>
   );
@@ -73,18 +88,21 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 21,
   },
-  horizontalContainer: {
+
+  //====================
+  socialBtnContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    marginVertical: 10,
-    overflow: 'hidden',
     width: '100%',
+    gap: 5,
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  horizontal: {
-    flex: 1,
-    height: 0,
-    borderWidth: 0.25,
-    borderColor: '#8793B4',
+  socialBtn: {
+    height: 40,
+    width: 68,
+    backgroundColor: '#F5F9FF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
   },
 });

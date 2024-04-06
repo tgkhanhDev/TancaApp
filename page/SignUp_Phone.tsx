@@ -8,9 +8,10 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {NoAccountTag, SocialMediaLogin} from '../components';
+import {NoAccountTag, SocialMediaLogin_Phone, SocialMedia_Gmail} from '../components';
 import { SignUpStackParamList } from '../router/signUpRoutes/SignUpRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import SignUpHorrizon from '../components/templates/SignUpHorrizon';
 
 
 type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
@@ -20,7 +21,6 @@ export const SignUp_Phone = ({navigation}: SignUpPage_Props) => {
     <ScrollView contentContainerStyle={{flex: 1}}>
       <View style={styles.container}>
         <View style={styles.inputContainer}>
-          
           <TouchableOpacity style={styles.phoneRegion}>
             <Text>+61</Text>
             <Image
@@ -36,14 +36,27 @@ export const SignUp_Phone = ({navigation}: SignUpPage_Props) => {
           <Text style={styles.buttonText}>Sign up</Text>
         </TouchableOpacity>
 
-        <View style={styles.horizontalContainer}>
-          <Text style={styles.horizontal}></Text>
-          <Text>or</Text>
-          <Text style={styles.horizontal}></Text>
+        <SignUpHorrizon title="or" />
+
+        {/* <SocialMediaLogin_Phone /> */}
+        {/* //=============== */}
+        <View style={styles.socialBtnContainer}>
+          <TouchableOpacity
+            style={styles.socialBtn}
+            onPress={() => navigation.navigate('Sign up Phone')}>
+            <Image source={require('../images/signUpPage/post.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialBtn}>
+            <Image source={require('../images/signUpPage/Facebook.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialBtn}>
+            <Image source={require('../images/signUpPage/Google.png')} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.socialBtn}>
+            <Image source={require('../images/signUpPage/Id-apple.png')} />
+          </TouchableOpacity>
         </View>
 
-        {/* Login with socialmedia  */}
-        <SocialMediaLogin />
       </View>
       <NoAccountTag />
     </ScrollView>
@@ -110,5 +123,22 @@ const styles = StyleSheet.create({
     height: 0,
     borderWidth: 0.25,
     borderColor: '#8793B4',
+  },
+
+  // ==========
+  socialBtnContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    gap: 5,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  socialBtn: {
+    height: 40,
+    width: 68,
+    backgroundColor: '#F5F9FF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
   },
 });
