@@ -7,15 +7,16 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {SocialMediaLogin_Phone} from '../components';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SignUpStackParamList } from '../router/signUpRoutes/SignUpRoutes';
 import SignUpHorrizon from '../components/templates/SignUpHorrizon';
-import { SignUpPhoneTabParamList } from '../router/signUpRoutes/tabs';
+import { SocialMedia_Phone } from '../components';
+import { PhoneAndGmailTabParamList } from '../router/signUpRoutes/tabs';
 
 type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
+type PhoneAndGmail_Props = NativeStackScreenProps<PhoneAndGmailTabParamList>;
 
-export const SignUpPage = ({navigation}: SignUpPage_Props) => {
+export const SignUpPage = ({navigation, route}: SignUpPage_Props ) => {
   return (
     <ScrollView contentContainerStyle={{flex: 1}}>
       <View style={styles.container}>
@@ -27,7 +28,7 @@ export const SignUpPage = ({navigation}: SignUpPage_Props) => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Sign up Tanca')}>
+          onPress={() => navigation.navigate('Sign up Tanca', {title:'phone'})}>
           <Image source={require('../images/signUpPage/phone.png')} />
           <Text style={styles.buttonText}>Sign up with Phone</Text>
         </TouchableOpacity>
@@ -36,10 +37,12 @@ export const SignUpPage = ({navigation}: SignUpPage_Props) => {
 
         {/* Login with socialmedia  */}
         {/* <SocialMediaLogin_Phone /> */}
+        {/* <SocialMedia_Phone navigation={navigation} route={route} /> */}
+
         <View style={styles.socialBtnContainer}>
           <TouchableOpacity
             style={styles.socialBtn}
-            onPress={() => navigation.navigate('Sign up Phone')}>
+            onPress={() => navigation.navigate('Sign up Tanca',{title:'gmail'})}>
             <Image source={require('../images/signUpPage/post.png')} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.socialBtn}>
@@ -52,7 +55,6 @@ export const SignUpPage = ({navigation}: SignUpPage_Props) => {
             <Image source={require('../images/signUpPage/Id-apple.png')} />
           </TouchableOpacity>
         </View>
-
       </View>
     </ScrollView>
   );

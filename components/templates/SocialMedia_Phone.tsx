@@ -4,14 +4,14 @@ import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import { SignUpPhoneTabParamList } from '../../router/signUpRoutes/tabs';
 import { SignUpStackParamList } from '../../router';
 
-type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
+type SignUpPage_Props = NativeStackScreenProps<SignUpPhoneTabParamList>;
 
-export const SocialMediaLogin_Phone = ({navigation}: SignUpPage_Props) => {
+export const SocialMedia_Phone = ({navigation} : SignUpPage_Props) => {
   return (
     <View style={styles.socialBtnContainer}>
       <TouchableOpacity
         style={styles.socialBtn}
-        onPress={() => navigation.navigate('Sign up Phone')}>
+        onPress={() => navigation.navigate('gmail')}>
         <Image source={require('../../images/signUpPage/post.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.socialBtn}>
@@ -27,7 +27,7 @@ export const SocialMediaLogin_Phone = ({navigation}: SignUpPage_Props) => {
   );
 };
 
-export default SocialMediaLogin_Phone
+export default SocialMedia_Phone
 
 const styles = StyleSheet.create({
   socialBtnContainer: {

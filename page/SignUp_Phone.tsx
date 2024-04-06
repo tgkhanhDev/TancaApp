@@ -8,15 +8,17 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {NoAccountTag, SocialMediaLogin_Phone, SocialMedia_Gmail} from '../components';
+import {NoAccountTag, SocialMedia_Gmail, SocialMedia_Phone} from '../components';
 import { SignUpStackParamList } from '../router/signUpRoutes/SignUpRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import SignUpHorrizon from '../components/templates/SignUpHorrizon';
+import { SignUpPhoneTabParamList } from '../router/signUpRoutes/tabs';
+
+// type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
+type SignUpPage_Props = NativeStackScreenProps<SignUpPhoneTabParamList>;
 
 
-type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
-
-export const SignUp_Phone = ({navigation}: SignUpPage_Props) => {
+export const SignUp_Phone = ({navigation, route}: SignUpPage_Props) => {
   return (
     <ScrollView contentContainerStyle={{flex: 1}}>
       <View style={styles.container}>
@@ -38,12 +40,12 @@ export const SignUp_Phone = ({navigation}: SignUpPage_Props) => {
 
         <SignUpHorrizon title="or" />
 
-        {/* <SocialMediaLogin_Phone /> */}
         {/* //=============== */}
-        <View style={styles.socialBtnContainer}>
+        <SocialMedia_Phone navigation={navigation} route={route}  />
+        {/* <View style={styles.socialBtnContainer}>
           <TouchableOpacity
             style={styles.socialBtn}
-            onPress={() => navigation.navigate('Sign up Phone')}>
+            onPress={() => navigation.navigate('gmail')}>
             <Image source={require('../images/signUpPage/post.png')} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.socialBtn}>
@@ -55,7 +57,7 @@ export const SignUp_Phone = ({navigation}: SignUpPage_Props) => {
           <TouchableOpacity style={styles.socialBtn}>
             <Image source={require('../images/signUpPage/Id-apple.png')} />
           </TouchableOpacity>
-        </View>
+        </View> */}
 
       </View>
       <NoAccountTag />
