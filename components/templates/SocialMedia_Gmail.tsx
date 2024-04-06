@@ -1,13 +1,17 @@
-import React from 'react'
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Image} from 'react-native';
+import React from 'react';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { PhoneAndGmailTabParamList } from '../../router/signUpRoutes/tabs';
 
-export const SocialMediaLogin = () => {
+type PhoneAndGmail_Props = NativeStackScreenProps<PhoneAndGmailTabParamList>;
+
+export const SocialMedia_Gmail = ({navigation}: PhoneAndGmail_Props) => {
   return (
     <View style={styles.socialBtnContainer}>
-      <TouchableOpacity style={styles.socialBtn}
-      
-      >
-        <Image source={require('../../images/signUpPage/post.png')} />
+      <TouchableOpacity
+        style={styles.socialBtn}
+        onPress={() => navigation.navigate('phone')}>
+        <Image source={require('../../images/signUpPage/phone_black.png')} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.socialBtn}>
         <Image source={require('../../images/signUpPage/Facebook.png')} />
@@ -20,9 +24,9 @@ export const SocialMediaLogin = () => {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
-export default SocialMediaLogin
+export default SocialMedia_Gmail;
 
 const styles = StyleSheet.create({
   socialBtnContainer: {

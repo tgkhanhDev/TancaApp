@@ -8,30 +8,19 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {NoAccountTag, SocialMedia_Gmail, SocialMedia_Phone} from '../components';
-import { SignUpStackParamList } from '../router/signUpRoutes/SignUpRoutes';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import {NoAccountTag, SocialMedia_Gmail} from '../components';
 import SignUpHorrizon from '../components/templates/SignUpHorrizon';
-import { SignUpPhoneTabParamList } from '../router/signUpRoutes/tabs';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { PhoneAndGmailTabParamList } from '../router/signUpRoutes/tabs';
 
-// type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
-type SignUpPage_Props = NativeStackScreenProps<SignUpPhoneTabParamList>;
+type PhoneAndGmail_Props = NativeStackScreenProps<PhoneAndGmailTabParamList>;
 
-
-export const SignUp_Phone = ({navigation, route}: SignUpPage_Props) => {
+export const SignUp_Gmail = ({navigation, route}: PhoneAndGmail_Props) => {
   return (
     <ScrollView contentContainerStyle={{flex: 1}}>
       <View style={styles.container}>
         <View style={styles.inputContainer}>
-          <TouchableOpacity style={styles.phoneRegion}>
-            <Text>+61</Text>
-            <Image
-              source={require('../images/signUpPhone/downBtn.png')}></Image>
-          </TouchableOpacity>
-
-          <TextInput
-            style={styles.textInput}
-            placeholder="Phone number"></TextInput>
+          <TextInput style={styles.textInput} placeholder="Email"></TextInput>
         </View>
 
         <TouchableOpacity style={styles.button}>
@@ -40,24 +29,8 @@ export const SignUp_Phone = ({navigation, route}: SignUpPage_Props) => {
 
         <SignUpHorrizon title="or" />
 
-        {/* //=============== */}
-        <SocialMedia_Phone navigation={navigation} route={route}  />
-        {/* <View style={styles.socialBtnContainer}>
-          <TouchableOpacity
-            style={styles.socialBtn}
-            onPress={() => navigation.navigate('gmail')}>
-            <Image source={require('../images/signUpPage/post.png')} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialBtn}>
-            <Image source={require('../images/signUpPage/Facebook.png')} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialBtn}>
-            <Image source={require('../images/signUpPage/Google.png')} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialBtn}>
-            <Image source={require('../images/signUpPage/Id-apple.png')} />
-          </TouchableOpacity>
-        </View> */}
+        {/* Login with socialmedia  */}
+        <SocialMedia_Gmail navigation={navigation} route={route} />
 
       </View>
       <NoAccountTag />
@@ -65,7 +38,7 @@ export const SignUp_Phone = ({navigation, route}: SignUpPage_Props) => {
   );
 };
 
-export default SignUp_Phone;
+export default SignUp_Gmail;
 
 const styles = StyleSheet.create({
   container: {
@@ -126,8 +99,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.25,
     borderColor: '#8793B4',
   },
-
-  // ==========
+//====
   socialBtnContainer: {
     flexDirection: 'row',
     width: '100%',
