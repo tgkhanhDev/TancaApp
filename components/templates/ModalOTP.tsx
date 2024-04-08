@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Modal,
   StyleSheet,
@@ -8,43 +8,26 @@ import {
   TextInput,
   NativeSyntheticEvent,
   TextInputKeyPressEventData,
+  Keyboard,
 } from 'react-native';
 
 type OTPInputProps = {
   length: number;
-  value: string;
-  disabled: boolean;
-  onChange(value: string, index: number): void;
 };
 
 export const ModalOTP = ({
   length,
-  value,
-  disabled,
-  onChange,
 }: OTPInputProps) => {
   const [modalVisible, setModalVisible] = useState(false);
-
   const inputRefs = useRef<Array<any>>([]);
 
-  const onChangeValue = (text: string, index: number) => {
-    // console.log("text: ", text);
-
-    onChange(text, index);
-
-    // onChange([text])
-    // console.log("value: ",value);
-  };
 
   const handleChange = (text: string, index: number) => {
-    
-    onChangeValue(text, index);
-    
+
     if (text.length !== 0) {
       return inputRefs?.current[index + 1]?.focus();
     }
-
-    return inputRefs?.current[index - 1]?.focus();
+    return inputRefs?.current?.splice(index - 1, 1);
   };
 
   const handleBackspace = (
@@ -54,8 +37,7 @@ export const ModalOTP = ({
     const {nativeEvent} = event;
 
     if (nativeEvent.key === 'Backspace') {
-
-      // inputRefs.current.splice(index - 1, 1);
+      inputRefs?.current[index - 1]?.focus();
       handleChange('', index);
     }
   };
@@ -93,7 +75,6 @@ export const ModalOTP = ({
                   maxLength={1}
                   contextMenuHidden
                   selectTextOnFocus
-                  editable={!disabled}
                   style={styles.input}
                   keyboardType="decimal-pad"
                   testID={`OTPInput-${index}`}
@@ -108,6 +89,7 @@ export const ModalOTP = ({
               onPress={() => setModalVisible(!modalVisible)}>
               <Text style={styles.buttonText}>Agree</Text>
             </TouchableOpacity>
+
           </View>
         </View>
       </Modal>
@@ -199,5 +181,10 @@ const styles = StyleSheet.create({
     height: 52,
     borderRadius: 10,
     backgroundColor: '#F2F7FF',
+  },
+
+  textInput: {
+    flex: 1,
+    color: 'black',
   },
 });

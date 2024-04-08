@@ -7,18 +7,23 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
-import {NoAccountTag, SocialMedia_Gmail, SocialMedia_Phone} from '../components';
-import { SignUpStackParamList } from '../router/signUpRoutes/SignUpRoutes';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import React, { useState } from 'react';
+import {
+  ModalOTP,
+  NoAccountTag,
+  SocialMedia_Gmail,
+  SocialMedia_Phone,
+} from '../components';
+import {SignUpStackParamList} from '../router/signUpRoutes/SignUpRoutes';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import SignUpHorrizon from '../components/templates/SignUpHorrizon';
-import { PhoneAndGmailTabParamList } from '../router/signUpRoutes/tabs';
+import {PhoneAndGmailTabParamList} from '../router/signUpRoutes/tabs';
 
 // type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
 type SignUpPage_Props = NativeStackScreenProps<PhoneAndGmailTabParamList>;
 
-
 export const SignUp_Phone = ({navigation, route}: SignUpPage_Props) => {
+
   return (
     <ScrollView contentContainerStyle={{flex: 1}}>
       <View style={styles.container}>
@@ -34,31 +39,14 @@ export const SignUp_Phone = ({navigation, route}: SignUpPage_Props) => {
             placeholder="Phone number"></TextInput>
         </View>
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Sign up</Text>
-        </TouchableOpacity>
+        <ModalOTP
+          length={6}
+        />
 
         <SignUpHorrizon title="or" />
 
         {/* //=============== */}
-        <SocialMedia_Phone navigation={navigation} route={route}  />
-        {/* <View style={styles.socialBtnContainer}>
-          <TouchableOpacity
-            style={styles.socialBtn}
-            onPress={() => navigation.navigate('gmail')}>
-            <Image source={require('../images/signUpPage/post.png')} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialBtn}>
-            <Image source={require('../images/signUpPage/Facebook.png')} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialBtn}>
-            <Image source={require('../images/signUpPage/Google.png')} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialBtn}>
-            <Image source={require('../images/signUpPage/Id-apple.png')} />
-          </TouchableOpacity>
-        </View> */}
-
+        <SocialMedia_Phone navigation={navigation} route={route} />
       </View>
       <NoAccountTag />
     </ScrollView>
