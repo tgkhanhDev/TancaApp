@@ -6,19 +6,44 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Alert
+  Alert,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {ModalOTP, NoAccountTag, SocialMedia_Phone} from '../components';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import SignUpHorrizon from '../components/templates/SignUpHorrizon';
 import {PhoneAndGmailTabParamList} from '../router/signUpRoutes/tabs';
+import {SignUpStackParamList} from '../router';
 
-// type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
-type SignUpPage_Props = NativeStackScreenProps<PhoneAndGmailTabParamList>;
+type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
+type PhoneGmailPage_Props = NativeStackScreenProps<PhoneAndGmailTabParamList>;
 
-export const SignUp_Phone = ({navigation, route}: SignUpPage_Props) => {
+type CombineProps = SignUpPage_Props & PhoneGmailPage_Props;
+export const SignUp_Phone = ({navigation, route}: CombineProps) => {
+  const otpLength: number = 6;
+
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [otp, setOTP] = useState<string[]>(Array(otpLength).fill('')); //string[]
+
+  //Generate OTP From Array
+ const combineStrings = (arr: string[]): string => {
+   return arr.join('');
+ };
+
+  //Hàm xử lý thêm xóa OTP
+  const handleOTP = (value: string, index: number): void => {
+    const newOtpArr = otp;
+    if (value.length !== 0) {
+      newOtpArr[index] = value;
+    } else {
+      newOtpArr[index] = "";
+    }
+    setOTP([...newOtpArr]);
+
+    const otpCode = combineStrings(newOtpArr)
+    // console.log("Your code: ", otpCode);
+    
+  };
 
   return (
     <ScrollView contentContainerStyle={{flex: 1}}>
@@ -32,11 +57,19 @@ export const SignUp_Phone = ({navigation, route}: SignUpPage_Props) => {
 
           <TextInput
             style={styles.textInput}
+            keyboardType="decimal-pad"
             placeholder="Phone number"
             onChangeText={text => setPhoneNumber(text)}></TextInput>
         </View>
 
-        <ModalOTP inputState={phoneNumber} length={6} navigation={navigation} route={route} />
+        <ModalOTP
+          value={otp}
+          onChange={handleOTP}
+          inputState={phoneNumber}
+          length={otpLength}
+          navigation={navigation}
+          route={route}
+        />
 
         <SignUpHorrizon title="or" />
 

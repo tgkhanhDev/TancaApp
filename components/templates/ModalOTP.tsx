@@ -1,4 +1,4 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useEffect, useRef, useState} from 'react';
 import {
   Modal,
@@ -12,28 +12,42 @@ import {
   Keyboard,
   Alert,
 } from 'react-native';
-import { SignUpStackParamList } from '../../router';
-
-type OTPInputProps = {
-  length: number;
-};
+import {SignUpStackParamList} from '../../router';
 
 type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
 
+type OTPInputProps = {
+  length: number;
+  value: Array<string>;
+  onChange(value: string, index: number): void;
+  inputState: string;
+  navigation: SignUpPage_Props['navigation'];
+  route: SignUpPage_Props['route'];
+};
 
-export const ModalOTP = (
-  {navigation, route, length , inputState}: any,
-) => {
+export const ModalOTP = ({
+  value, //otp
+  onChange, //handleOTP
+  length,
+  inputState, //phoneNumber
+  navigation,
+  route,
+}: OTPInputProps) => {
   const [modalVisible, setModalVisible] = useState(false);
   const inputRefs = useRef<Array<any>>([]);
 
+  //!========================================================================
+  //Xử lý thay đổi của OTP
   const handleChange = (text: string, index: number) => {
+    onChange(text, index);
     if (text.length !== 0) {
       return inputRefs?.current[index + 1]?.focus();
     }
     return inputRefs?.current[index - 1]?.focus();
   };
+  //!========================================================================
 
+  //Xử lý xóa OTP
   const handleBackspace = (
     event: NativeSyntheticEvent<TextInputKeyPressEventData>,
     index: number,
@@ -46,14 +60,24 @@ export const ModalOTP = (
     }
   };
 
-
+  //Check phone đã nhập chưa (Update here)
   const handleCheckPhoneNumber = () => {
-    if ( !inputState || inputState?.trim() === '') {
+    if (!inputState || inputState?.trim() === '') {
       Alert.alert('Error', 'Phone number cannot be empty');
     } else {
-      setModalVisible(true)
+      setModalVisible(true);
     }
   };
+
+  //Xử lý Agree Button
+  const handleAgreeButton = () => {
+    console.log("OTP: ", value);
+    if (value.some(item => item === '')) {
+      Alert.alert('Error', 'OTP không hợp lệ');
+    } else {
+      navigation.navigate('Home');
+    }
+  }
 
   return (
     <View>
@@ -99,7 +123,7 @@ export const ModalOTP = (
 
             <TouchableOpacity
               style={styles.button}
-              onPress={() => navigation.navigate('Home')}>
+              onPress={() => handleAgreeButton() }>
               <Text style={styles.buttonText}>Agree</Text>
             </TouchableOpacity>
           </View>
@@ -110,7 +134,7 @@ export const ModalOTP = (
       {/* Button Show Modal  */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => handleCheckPhoneNumber() }>
+        onPress={() => handleCheckPhoneNumber()}>
         <Text style={styles.buttonText}>Sign up</Text>
       </TouchableOpacity>
       {/* ================= */}
