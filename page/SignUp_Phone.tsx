@@ -7,14 +7,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   ModalOTP,
   NoAccountTag,
-  SocialMedia_Gmail,
   SocialMedia_Phone,
 } from '../components';
-import {SignUpStackParamList} from '../router/signUpRoutes/SignUpRoutes';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import SignUpHorrizon from '../components/templates/SignUpHorrizon';
 import {PhoneAndGmailTabParamList} from '../router/signUpRoutes/tabs';
@@ -39,9 +37,7 @@ export const SignUp_Phone = ({navigation, route}: SignUpPage_Props) => {
             placeholder="Phone number"></TextInput>
         </View>
 
-        <ModalOTP
-          length={6}
-        />
+        <ModalOTP length={6} navigation={navigation} route={route}  />
 
         <SignUpHorrizon title="or" />
 

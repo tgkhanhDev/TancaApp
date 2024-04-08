@@ -10,11 +10,8 @@ import React from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { SignUpStackParamList } from '../router/signUpRoutes/SignUpRoutes';
 import SignUpHorrizon from '../components/templates/SignUpHorrizon';
-import { SocialMedia_Phone } from '../components';
-import { PhoneAndGmailTabParamList } from '../router/signUpRoutes/tabs';
 
 type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
-type PhoneAndGmail_Props = NativeStackScreenProps<PhoneAndGmailTabParamList>;
 
 export const SignUpPage = ({navigation, route}: SignUpPage_Props ) => {
   return (

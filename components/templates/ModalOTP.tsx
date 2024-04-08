@@ -1,3 +1,4 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, {useEffect, useRef, useState} from 'react';
 import {
   Modal,
@@ -10,20 +11,21 @@ import {
   TextInputKeyPressEventData,
   Keyboard,
 } from 'react-native';
+import { SignUpStackParamList } from '../../router';
 
 type OTPInputProps = {
   length: number;
 };
 
-export const ModalOTP = ({
-  length,
-}: OTPInputProps) => {
+type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
+
+export const ModalOTP = (
+  {navigation, route, length}: any,
+) => {
   const [modalVisible, setModalVisible] = useState(false);
   const inputRefs = useRef<Array<any>>([]);
 
-
   const handleChange = (text: string, index: number) => {
-
     if (text.length !== 0) {
       return inputRefs?.current[index + 1]?.focus();
     }
@@ -41,6 +43,10 @@ export const ModalOTP = ({
       handleChange('', index);
     }
   };
+
+  const handleNavigate =() =>{
+    setModalVisible(!modalVisible)
+  }
 
   return (
     <View>
@@ -86,10 +92,9 @@ export const ModalOTP = ({
 
             <TouchableOpacity
               style={styles.button}
-              onPress={() => setModalVisible(!modalVisible)}>
+              onPress={() => navigation.navigate('Home')}>
               <Text style={styles.buttonText}>Agree</Text>
             </TouchableOpacity>
-
           </View>
         </View>
       </Modal>

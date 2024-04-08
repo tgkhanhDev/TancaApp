@@ -3,6 +3,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SignUpPage, SignUp_Phone} from '../../page';
 import {PhoneAndGmailTabParamList, SignUpPhone_Tab} from './tabs';
+import Home from '../../page/Home';
 
 //How routes Work:
 //Screen:
@@ -17,6 +18,7 @@ import {PhoneAndGmailTabParamList, SignUpPhone_Tab} from './tabs';
 export type SignUpStackParamList = {
   'Create your business': undefined;
   'Sign up Tanca': {title: 'phone' | 'gmail'};
+  'Home': undefined
 };
 
 //Tab============
@@ -36,6 +38,7 @@ export const SignUpRoutes = () => {
           title: 'gmail', //Default
         }}
       />
+      <SignUpStack.Screen name="Home" component={Home} />
     </SignUpStack.Navigator>
   );
 };
