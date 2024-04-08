@@ -29,7 +29,6 @@ export const SignUp_Gmail = ({navigation, route}: PhoneAndGmail_Props) => {
 
         <SignUpHorrizon title="or" />
 
-        {/* Login with socialmedia  */}
         <SocialMedia_Gmail navigation={navigation} route={route} />
 
       </View>

@@ -32,10 +32,6 @@ export const SignUpPage = ({navigation, route}: SignUpPage_Props ) => {
 
         <SignUpHorrizon title="or, sign up with" />
 
-        {/* Login with socialmedia  */}
-        {/* <SocialMediaLogin_Phone /> */}
-        {/* <SocialMedia_Phone navigation={navigation} route={route} /> */}
-
         <View style={styles.socialBtnContainer}>
           <TouchableOpacity
             style={styles.socialBtn}

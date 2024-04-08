@@ -9,7 +9,6 @@ import {
   TextInput,
   NativeSyntheticEvent,
   TextInputKeyPressEventData,
-  Keyboard,
   Alert,
 } from 'react-native';
 import {SignUpStackParamList} from '../../router';
@@ -36,7 +35,6 @@ export const ModalOTP = ({
   const [modalVisible, setModalVisible] = useState(false);
   const inputRefs = useRef<Array<any>>([]);
 
-  //!========================================================================
   //Xử lý thay đổi của OTP
   const handleChange = (text: string, index: number) => {
     onChange(text, index);
@@ -45,7 +43,6 @@ export const ModalOTP = ({
     }
     return inputRefs?.current[index - 1]?.focus();
   };
-  //!========================================================================
 
   //Xử lý xóa OTP
   const handleBackspace = (
@@ -129,7 +126,6 @@ export const ModalOTP = ({
           </View>
         </View>
       </Modal>
-      {/* ================  */}
 
       {/* Button Show Modal  */}
       <TouchableOpacity
@@ -137,7 +133,6 @@ export const ModalOTP = ({
         onPress={() => handleCheckPhoneNumber()}>
         <Text style={styles.buttonText}>Sign up</Text>
       </TouchableOpacity>
-      {/* ================= */}
     </View>
   );
 };

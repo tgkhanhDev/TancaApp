@@ -73,7 +73,6 @@ export const SignUp_Phone = ({navigation, route}: CombineProps) => {
 
         <SignUpHorrizon title="or" />
 
-        {/* //=============== */}
         <SocialMedia_Phone navigation={navigation} route={route} />
       </View>
       <NoAccountTag />

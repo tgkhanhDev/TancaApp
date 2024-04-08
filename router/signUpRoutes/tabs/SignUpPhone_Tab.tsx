@@ -1,5 +1,5 @@
 import React from 'react'
-import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
+import {createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SignUp_Phone } from '../../../page';
 import SignUp_Gmail from '../../../page/SignUp_Gmail';
 import { RouteProp } from '@react-navigation/native';
@@ -10,7 +10,6 @@ export type PhoneAndGmailTabParamList = {
   'gmail': undefined;
 };
 
-// type PhoneAndGmailTabProps= NativeStackScreenProps<PhoneAndGmailTabParamList>;
 
 type PhoneAndGmailTabProps = {
   route: RouteProp<SignUpStackParamList, 'Sign up Tanca'>;
