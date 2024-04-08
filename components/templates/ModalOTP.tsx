@@ -31,7 +31,7 @@ export const ModalOTP = (
     if (text.length !== 0) {
       return inputRefs?.current[index + 1]?.focus();
     }
-    return inputRefs?.current?.splice(index - 1, 1);
+    return inputRefs?.current[index - 1]?.focus();
   };
 
   const handleBackspace = (
