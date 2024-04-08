@@ -10,6 +10,7 @@ import {
   NativeSyntheticEvent,
   TextInputKeyPressEventData,
   Keyboard,
+  Alert,
 } from 'react-native';
 import { SignUpStackParamList } from '../../router';
 
@@ -19,8 +20,9 @@ type OTPInputProps = {
 
 type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
 
+
 export const ModalOTP = (
-  {navigation, route, length}: any,
+  {navigation, route, length , inputState}: any,
 ) => {
   const [modalVisible, setModalVisible] = useState(false);
   const inputRefs = useRef<Array<any>>([]);
@@ -44,9 +46,14 @@ export const ModalOTP = (
     }
   };
 
-  const handleNavigate =() =>{
-    setModalVisible(!modalVisible)
-  }
+
+  const handleCheckPhoneNumber = () => {
+    if ( !inputState || inputState?.trim() === '') {
+      Alert.alert('Error', 'Phone number cannot be empty');
+    } else {
+      setModalVisible(true)
+    }
+  };
 
   return (
     <View>
@@ -103,7 +110,7 @@ export const ModalOTP = (
       {/* Button Show Modal  */}
       <TouchableOpacity
         style={styles.button}
-        onPress={() => setModalVisible(true)}>
+        onPress={() => handleCheckPhoneNumber() }>
         <Text style={styles.buttonText}>Sign up</Text>
       </TouchableOpacity>
       {/* ================= */}

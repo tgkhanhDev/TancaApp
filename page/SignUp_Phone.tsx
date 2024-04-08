@@ -6,13 +6,10 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Alert
 } from 'react-native';
-import React from 'react';
-import {
-  ModalOTP,
-  NoAccountTag,
-  SocialMedia_Phone,
-} from '../components';
+import React, {useEffect, useState} from 'react';
+import {ModalOTP, NoAccountTag, SocialMedia_Phone} from '../components';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import SignUpHorrizon from '../components/templates/SignUpHorrizon';
 import {PhoneAndGmailTabParamList} from '../router/signUpRoutes/tabs';
@@ -21,6 +18,7 @@ import {PhoneAndGmailTabParamList} from '../router/signUpRoutes/tabs';
 type SignUpPage_Props = NativeStackScreenProps<PhoneAndGmailTabParamList>;
 
 export const SignUp_Phone = ({navigation, route}: SignUpPage_Props) => {
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   return (
     <ScrollView contentContainerStyle={{flex: 1}}>
@@ -34,10 +32,11 @@ export const SignUp_Phone = ({navigation, route}: SignUpPage_Props) => {
 
           <TextInput
             style={styles.textInput}
-            placeholder="Phone number"></TextInput>
+            placeholder="Phone number"
+            onChangeText={text => setPhoneNumber(text)}></TextInput>
         </View>
 
-        <ModalOTP length={6} navigation={navigation} route={route}  />
+        <ModalOTP inputState={phoneNumber} length={6} navigation={navigation} route={route} />
 
         <SignUpHorrizon title="or" />
 
