@@ -12,10 +12,10 @@ import {NoAccountTag, SocialMedia_Gmail, SocialMedia_Phone} from '../components'
 import { SignUpStackParamList } from '../router/signUpRoutes/SignUpRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import SignUpHorrizon from '../components/templates/SignUpHorrizon';
-import { SignUpPhoneTabParamList } from '../router/signUpRoutes/tabs';
+import { PhoneAndGmailTabParamList } from '../router/signUpRoutes/tabs';
 
 // type SignUpPage_Props = NativeStackScreenProps<SignUpStackParamList>;
-type SignUpPage_Props = NativeStackScreenProps<SignUpPhoneTabParamList>;
+type SignUpPage_Props = NativeStackScreenProps<PhoneAndGmailTabParamList>;
 
 
 export const SignUp_Phone = ({navigation, route}: SignUpPage_Props) => {

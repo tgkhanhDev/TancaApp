@@ -6,28 +6,60 @@
  */
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useState} from 'react';
 import type {PropsWithChildren} from 'react';
 import {StyleSheet, useColorScheme} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import SignUpRoutes from './router/signUpRoutes/SignUpRoutes';
-import SignUp_Gmail from './page/SignUp_Gmail';
-
+import {ModalOTP} from './components';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const [otp, setOTP] = useState('');
+  const handleOTPChange = (newValue: string, index:number) => {
+    console.log('Trong Handle: ==========');
+    // console.log("newValue: ", newValue);
+    console.log("idx: ", index);
+    
+    //gen new OTP
+    let newOTP;
+    if (
+      !isNaN(Number(newValue)) &&
+      Number(newValue) >= 0 &&
+      Number(newValue) <= 9 &&
+      newValue != ''
+    ) {
+      newOTP = otp.concat(newValue);
+      setOTP(newOTP);
+      console.log('newOTP: ', newOTP);
+    }else{
+      console.log("Not a number");
+      // newOTP= otp.substring(0,index-1)
+      // setOTP(newOTP);
+      // console.log('newOTP(del): ', newOTP);
+    }
+
+
+    // setOTP(newOTP);
+  };
+
   return (
-    <NavigationContainer>
-      <SignUpRoutes/>
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <SignUpRoutes/>
+    // </NavigationContainer>
+    <ModalOTP
+      length={6}
+      value={otp}
+      disabled={false}
+      onChange={handleOTPChange}
+    />
   );
 }
 

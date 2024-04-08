@@ -1,12 +1,11 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React from 'react'
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import React from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
-import { SignUpPhoneTabParamList } from '../../router/signUpRoutes/tabs';
-import { SignUpStackParamList } from '../../router';
+import {PhoneAndGmailTabParamList} from '../../router/signUpRoutes/tabs';
 
-type SignUpPage_Props = NativeStackScreenProps<SignUpPhoneTabParamList>;
+type SignUpPage_Props = NativeStackScreenProps<PhoneAndGmailTabParamList>;
 
-export const SocialMedia_Phone = ({navigation} : SignUpPage_Props) => {
+export const SocialMedia_Phone = ({navigation}: SignUpPage_Props) => {
   return (
     <View style={styles.socialBtnContainer}>
       <TouchableOpacity
@@ -27,7 +26,7 @@ export const SocialMedia_Phone = ({navigation} : SignUpPage_Props) => {
   );
 };
 
-export default SocialMedia_Phone
+export default SocialMedia_Phone;
 
 const styles = StyleSheet.create({
   socialBtnContainer: {
